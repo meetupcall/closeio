@@ -54,8 +54,12 @@ module Closeio
       #  Call Activities
       #
 
-      def list_calls(options={})
-        get(call_path, options)
+      def list_calls(options={}, paginate=false)
+        if paginate
+          paginate(call_path, params)
+        else
+          get(call_path, params)
+        end
       end
 
       def create_call(options={})
@@ -64,6 +68,14 @@ module Closeio
 
       def delete_call(id)
         delete("#{call_path}#{id}/")
+      end
+      
+      #
+      #  Lead Status Change Activities
+      #
+      
+      def list_lead_status_changes(options={})
+        get(lead_status_change_path, options)
       end
 
       private
@@ -82,6 +94,10 @@ module Closeio
 
       def call_path
         "activity/call/"
+      end
+      
+      def lead_status_change_path
+        "activity/status_change/lead/"
       end
 
     end
