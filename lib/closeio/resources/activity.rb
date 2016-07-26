@@ -56,9 +56,9 @@ module Closeio
 
       def list_calls(options={}, paginate=false)
         if paginate
-          paginate(call_path, params)
+          paginate(call_path, options)
         else
-          get(call_path, params)
+          get(call_path, options)
         end
       end
 
