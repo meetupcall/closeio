@@ -76,7 +76,7 @@ module Closeio
 
     def connection
       Faraday.new(url: "https://app.close.io/api/v1", headers: { accept: 'application/json' }, ssl: {
-    ca_file: ca_file}, request: { open_timeout: 2, timeout: 5 }) do |conn|
+    ca_file: ca_file}, request: { open_timeout: 5, timeout: 8 }) do |conn|
         conn.basic_auth api_key, ''
         conn.request    :json
         conn.response   :logger if logger
